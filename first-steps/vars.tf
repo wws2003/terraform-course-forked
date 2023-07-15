@@ -17,19 +17,6 @@ variable AMIS {
     type = map(string)
     default = {
         us-west-1 = "ami-13be557e"
-        ap-southeast-1 = "ami-0f74c08b8b5effa56"
+        ap-southeast-1 = "ami-0a8c1cf8400c94439"
     }
 }
-
-variable "PATH_TO_PRIVATE_KEY" {
-  default = "my_aws_key"
-}
-
-variable "PATH_TO_PUBLIC_KEY" {
-  default = "my_aws_key.pub"
-}
-
-variable "INSTANCE_USERNAME" {
-  default = "ubuntu"
-}
-

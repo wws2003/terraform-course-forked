@@ -3,3 +3,5 @@
 */terraform.tfstate.backup
 */.terraform
 */mykey*
+*.tfp
+my_aws_key*
