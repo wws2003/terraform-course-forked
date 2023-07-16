@@ -56,6 +56,10 @@ resource "aws_instance" "instance1" {
         ]
     }
 
+    provisioner "local-exec" {
+        command = "echo ${aws_instance.instance1.private_ip} >> private_ips.txt"
+    }
+
     # # Connection
     connection {
         # trying to get the public IP address of an instance if it exists, otherwise use the private IP address.
@@ -67,12 +71,12 @@ resource "aws_instance" "instance1" {
 }
 
 # Output: Public IP, ARN and vpc_security_group_ids
-output "ec2_instance_info1" {
+output "ec2_instance_info_public_ip" {
     value = "${aws_instance.instance1.public_ip}"
 }
-output "ec2_instance_info2" {
+output "ec2_instance_info_arn" {
     value = "${aws_instance.instance1.arn}"
 }
-output "ec2_instance_info3" {
+output "ec2_instance_info_vpc_security_group_ids" {
     value = "${aws_instance.instance1.vpc_security_group_ids}"
 }
