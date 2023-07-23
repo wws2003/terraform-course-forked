@@ -1,0 +1,15 @@
+gen key (user) for each server
+ ssh-keygen -f web_server_key
+ ssh-keygen -f db_server_key
+ ssh-keygen -f log_server_key
+
+create key pair resources
+ 
+
+modify 3 resources   
+- key_name = aws_key_pair.aws_key.key_name
+
+upload key to all servers -> Just upload key pair 
+
+
+

@@ -32,12 +32,31 @@ variable AMIS {
     }
 }
 
-variable "PATH_TO_PRIVATE_KEY" {
-  default = "my_aws_key"
+# Web server key
+variable "PATH_TO_WEB_SERVER_PRIVATE_KEY" {
+  default = "keys/web_server_key"
 }
 
-variable "PATH_TO_PUBLIC_KEY" {
-  default = "my_aws_key.pub"
+variable "PATH_TO_WEB_SERVER_PUBLIC_KEY" {
+  default = "keys/web_server_key.pub"
+}
+
+# DB server key
+variable "PATH_TO_DB_SERVER_PRIVATE_KEY" {
+  default = "keys/db_server_key"
+}
+
+variable "PATH_TO_DB_SERVER_PUBLIC_KEY" {
+  default = "keys/db_server_key.pub"
+}
+
+# Log server key
+variable "PATH_TO_LOG_SERVER_PRIVATE_KEY" {
+  default = "keys/log_server_key"
+}
+
+variable "PATH_TO_LOG_SERVER_PUBLIC_KEY" {
+  default = "keys/log_server_key.pub"
 }
 
 variable "INSTANCE_USERNAME" {

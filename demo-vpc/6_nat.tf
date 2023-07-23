@@ -24,7 +24,11 @@ resource "aws_route_table" "app_nat_route_table" {
     route {
         # All traffic except VPC internal is going to internet gateway
         cidr_block = "0.0.0.0/0"
-        gateway_id = aws_internet_gateway.app_internet_gateway.id
+        nat_gateway_id = aws_nat_gateway.app_nat_gateway.id
+    }
+
+    tags = {
+        Name = "app_nat_route_table"
     }
 }
 
