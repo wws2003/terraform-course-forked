@@ -3,6 +3,12 @@ resource "aws_key_pair" "my_key_pair" {
     public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
 
+locals {
+    web_vars = {
+        myip = "172.10.16.1"
+    }
+}
+
 resource "aws_instance" "web" {
     ami           = var.AMIS[var.AWS_REGION]
     instance_type = "t2.micro"
@@ -18,5 +24,8 @@ resource "aws_instance" "web" {
     # }
 
     # ... But this will execute the command in the templated-file ?
-    user_data = data.template_file.my_templated_file.rendered
+    # user_data = data.template_file.my_templated_file.rendered
+
+    # For Terraform v0.12~
+    user_data = templatefile("init.tpl", local.web_vars)
 }
