@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Technically this is a template file to render ${DEVICE} value
+echo "--------------------------------Cloud init script is running-------------------------------------"
 
-set -ex 
+set -ex
 
 vgchange -ay
 
