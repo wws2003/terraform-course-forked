@@ -1,0 +1,113 @@
+# module.vpc_s3_app.aws_subnet.public[0]:
+resource "aws_subnet" "public" {
+    arn                                            = "arn:aws:ec2:ap-southeast-1:487628650335:subnet/subnet-0c3dfc1abced1bda6"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "ap-southeast-1a"
+    availability_zone_id                           = "apse1-az2"
+    cidr_block                                     = "10.0.101.0/24"
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0c3dfc1abced1bda6"
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = true
+    owner_id                                       = "487628650335"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    tags                                           = {
+        "Environment" = "dev"
+        "Name"        = "app-vpc-public-ap-southeast-1a"
+        "Terraform"   = "true"
+    }
+    tags_all                                       = {
+        "Environment" = "dev"
+        "Name"        = "app-vpc-public-ap-southeast-1a"
+        "Terraform"   = "true"
+    }
+    vpc_id                                         = "vpc-0f184a0b0b3ea8edd"
+}
+# aws_instance.app_instance:
+resource "aws_instance" "app_instance" {
+    ami                                  = "ami-0f74c08b8b5effa56"
+    arn                                  = "arn:aws:ec2:ap-southeast-1:487628650335:instance/i-0ef47110830b90d73"
+    associate_public_ip_address          = false
+    availability_zone                    = "ap-southeast-1a"
+    cpu_core_count                       = 1
+    cpu_threads_per_core                 = 1
+    disable_api_stop                     = false
+    disable_api_termination              = false
+    ebs_optimized                        = false
+    get_password_data                    = false
+    hibernation                          = false
+    iam_instance_profile                 = "app_s3_instance_role_profile"
+    id                                   = "i-0ef47110830b90d73"
+    instance_initiated_shutdown_behavior = "stop"
+    instance_state                       = "running"
+    instance_type                        = "t2.micro"
+    ipv6_address_count                   = 0
+    ipv6_addresses                       = []
+    key_name                             = "aws_log_server_key"
+    monitoring                           = false
+    placement_partition_number           = 0
+    primary_network_interface_id         = "eni-08bba4437c4f1ec0c"
+    private_dns                          = "ip-10-0-101-190.ap-southeast-1.compute.internal"
+    private_ip                           = "10.0.101.190"
+    secondary_private_ips                = []
+    security_groups                      = []
+    source_dest_check                    = true
+    subnet_id                            = "subnet-0c3dfc1abced1bda6"
+    tags                                 = {}
+    tags_all                             = {}
+    tenancy                              = "default"
+    user_data_replace_on_change          = false
+    vpc_security_group_ids               = [
+        "sg-0fae19f893c4ffa3f",
+    ]
+
+    capacity_reservation_specification {
+        capacity_reservation_preference = "open"
+    }
+
+    cpu_options {
+        core_count       = 1
+        threads_per_core = 1
+    }
+
+    credit_specification {
+        cpu_credits = "standard"
+    }
+
+    enclave_options {
+        enabled = false
+    }
+
+    maintenance_options {
+        auto_recovery = "default"
+    }
+
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_put_response_hop_limit = 1
+        http_tokens                 = "optional"
+        instance_metadata_tags      = "disabled"
+    }
+
+    private_dns_name_options {
+        enable_resource_name_dns_a_record    = false
+        enable_resource_name_dns_aaaa_record = false
+        hostname_type                        = "ip-name"
+    }
+
+    root_block_device {
+        delete_on_termination = true
+        device_name           = "/dev/sda1"
+        encrypted             = false
+        iops                  = 100
+        tags                  = {}
+        throughput            = 0
+        volume_id             = "vol-0afd8bccc59f72184"
+        volume_size           = 8
+        volume_type           = "gp2"
+    }
+}
