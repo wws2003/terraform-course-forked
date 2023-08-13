@@ -2,7 +2,8 @@
 resource "aws_ecs_task_definition" "app_ecs_task_definition" {
     family = "my_sample_app"
     container_definitions = templatefile("templates/app.json.tpl", {
-        REPOSITORY_URL = replace(aws_ecr_repository.app_ecr.repository_url, "https://", "")
+        REPOSITORY_URL = replace(aws_ecr_repository.app_ecr.repository_url, "https://", ""),
+        IMG_TAG = var.ECR_IMG_TAG
     })
 }
 
@@ -13,7 +14,8 @@ resource "aws_elb" "app_elb" {
     listener {
         instance_port     = 3000
         instance_protocol = "http"
-        lb_port           = 80
+        # Load balancer port is 80
+        lb_port           = var.LOAD_BALANCER_PORT
         lb_protocol       = "http"
     }
 

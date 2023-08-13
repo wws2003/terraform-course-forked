@@ -26,3 +26,8 @@ variable AMIS {
 variable ECR_IMG_TAG {
     default = "v1"
 }
+
+variable LOAD_BALANCER_PORT {
+    type = number
+    default = 80
+}
