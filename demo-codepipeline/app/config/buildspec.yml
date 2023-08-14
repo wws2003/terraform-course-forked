@@ -1,0 +1,23 @@
+# Define steps to build app
+version: 0.2
+
+phases:
+  pre-build:
+    commands:
+      # Login to docker
+      - aws ecr get-login-password --profile ${PROFILE} | docker login --username AWS --password-stdin ${ECR_URL}
+  build:
+    commands:
+      # Build docker image
+      - docker build -t 
+  post-builds:
+    commands:
+      # Push docker image
+      - docker tag
+      - docker push
+      - docker push
+      # Create task definition (for ECS service ?)
+      - ./create-new-task-def.sh  $IMAGE_REPO_NAME
+
+artifacts:
+  files:
